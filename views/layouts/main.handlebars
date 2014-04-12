@@ -6,9 +6,9 @@
   </head>
   <body>
     {{{body}}}
-    <script type="text/javascript" src="/vendor/requirejs/require.js"></script>
     <script>
-      require.config({
+      var require = {
+        'deps' : ['main'],
         'paths': {
           'main'    : 'scripts/app',
           'app'     : 'scripts/mar_app',
@@ -16,7 +16,7 @@
           'marionette': '/vendor/marionette/lib/core/amd/backbone.marionette',
           'backbone.babysitter': '/vendor/backbone.babysitter/lib/amd/backbone.babysitter',
           'backbone.wreqr': '/vendor/backbone.wreqr/lib/amd/backbone.wreqr',
-          'handlebars': '/vendor/handlebars-1.3.0.js',
+          'handlebars': '/vendor/handlebars-1.3.0',
           'jquery': '/vendor/jquery/dist/jquery',
           'underscore': '/vendor/underscore/underscore',
         },
@@ -28,9 +28,9 @@
             'exports': 'Handlebars'
           }
         }
-      });
-      require(['main'])
+      };
     </script>
+    <script type="text/javascript" src="/vendor/requirejs/require.js"></script>
   </body>
 </html>
 
