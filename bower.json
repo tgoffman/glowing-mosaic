@@ -1,0 +1,16 @@
+{
+  "name": "bizcon",
+  "version": "0.0.0",
+  "homepage": "localhost:3000",
+  "authors": [
+    "Tristan Goffman"
+  ],
+  "private": true,
+  "dependencies": {
+    "jquery": null,
+    "backbone": null,
+    "marionette": null,
+    "handlebars.js": null,
+    "requirejs": null
+  }
+}
