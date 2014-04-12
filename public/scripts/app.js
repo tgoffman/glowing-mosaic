@@ -1,5 +1,5 @@
 define(['marionette'], function (Marionette) {
-  var app = new Marionette.Application()
+  window.app = new Marionette.Application()
   app.start
 
   require(['jquery', 'scripts/board_control_view'], function($, BoardControlView) {

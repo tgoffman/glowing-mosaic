@@ -3,6 +3,9 @@ define(['underscore', 'jquery', 'backbone', 'marionette', 'handlebars', 'scripts
   var BoardView = Marionette.Layout.extend({
     template: Handlebars.compile($('#board-temp').html()),
     ui: {rows: '.rows'},
+    events: {
+      'click .reset': '__onResetClick'
+    },
     initialize: function(options) {
       if (!options.rows) {
         options.rows = 6
@@ -22,12 +25,19 @@ define(['underscore', 'jquery', 'backbone', 'marionette', 'handlebars', 'scripts
         }
         this.row_collections.push(collection)
       }
+      
+      _.bindAll(this, '__onResetClick')
     },
     onRender: function(current_view) {
       _.each(this.row_collections, function(collection) {
         var view = new RowView({collection: collection}).render()
         current_view.ui.rows.append(view.$el)
       })
+    },
+
+    //private
+    __onResetClick: function() {
+      app.vent.trigger('board.clear')
     }
   })
   return BoardView

@@ -10,12 +10,23 @@ define(['underscore','marionette', 'scripts/lib/rcolor'], function(_, Marionette
     initialize: function () {
       this.previous_colors = [] //array of previously chosen colors
 
-      _.bindAll(this, '__onClick')
+      _.bindAll(this, '__onClick', 'reset')
     },
     
     template: Handlebars.compile($('#tile-temp').html()),
 
     onRender: function() {
+      this.listenTo(app.vent, 'board.clear', this.reset)
+    },
+
+    onClose: function() {
+      this.stopListening()
+    },
+
+    reset: function() {
+      this.model.unset('color')
+      this.$el.css('background-color', 'white')
+      this.previous_colors = []
     },
 
     //private
