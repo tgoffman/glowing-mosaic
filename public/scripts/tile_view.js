@@ -25,14 +25,14 @@ define(['underscore','marionette', 'scripts/lib/rcolor'], function(_, Marionette
 
     reset: function() {
       this.model.unset('color')
-      this.$el.css('background-color', 'white')
+      this.$el.css('background-color', 'inherit')
       this.previous_colors = []
     },
 
     //private
     __onClick: function (event) {
       if (this.model.get('color')) {
-        this.$el.css('background-color', 'white')
+        this.$el.css('background-color', 'inherit')
         this.model.unset('color')
       } else {
         var new_color = new RColor().get(true)

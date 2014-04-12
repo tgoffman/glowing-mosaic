@@ -1,3 +1,31 @@
+body {
+  background-color: #fff9fb;
+}
+
+header { 
+  color: #59574b;  
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+#content { 
+  width: 40em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p { 
+  font-style: italic;
+  font-size: 16px;
+}
+
+#board {
+  margin-left: auto;
+  margin-right: auto;
+  width: 30em;
+}
+
+button { float: right; }
+
 .tile {
  cursor: pointer;
  width: 60px;
