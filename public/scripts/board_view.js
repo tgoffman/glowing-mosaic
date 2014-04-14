@@ -1,10 +1,11 @@
-define(['underscore', 'jquery', 'backbone', 'marionette', 'handlebars', 'scripts/row_view'], function (_, $, Backbone, Marionette, Handlebars, RowView) {
+define(['underscore', 'jquery', 'backbone', 'marionette', 'handlebars', 'scripts/row_view', 'scripts/board_model'], function (_, $, Backbone, Marionette, Handlebars, RowView, Board) {
 
   var BoardView = Marionette.Layout.extend({
     template: Handlebars.compile($('#board-temp').html()),
     ui: {rows: '.rows'},
     events: {
-      'click .reset': '__onResetClick'
+      'click .reset': '__onResetClick',
+      'click .save': '__onSaveClick'
     },
     initialize: function(options) {
       if (!options.rows) {
@@ -26,7 +27,7 @@ define(['underscore', 'jquery', 'backbone', 'marionette', 'handlebars', 'scripts
         this.row_collections.push(collection)
       }
       
-      _.bindAll(this, '__onResetClick')
+      _.bindAll(this, '__onResetClick', '__onSaveClick')
     },
     onRender: function(current_view) {
       _.each(this.row_collections, function(collection) {
@@ -38,6 +39,14 @@ define(['underscore', 'jquery', 'backbone', 'marionette', 'handlebars', 'scripts
     //private
     __onResetClick: function() {
       app.vent.trigger('board.clear')
+    },
+
+    __onSaveClick: function() {
+      var rows = []
+      for (collection_ind in this.row_collections) {
+        rows.push(this.row_collections[collection_ind].toJSON())
+      }
+      new Board().save('rows', rows)
     }
   })
   return BoardView
